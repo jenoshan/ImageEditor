@@ -15,6 +15,17 @@ namespace ImageEditor.Controllers
     public class ImageController : ControllerBase
     {
         [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            // simulation for testing
+            Image image = new Image { Imagename = "image_1", Actualimage = new MemoryStream() };
+            EditAnImage(image);
+
+            return Ok(new { message = "Welcome To Image Editor" });
+        }
+
+        [AllowAnonymous]
         [HttpGet("imagelist")]
         public IActionResult GetListImages([FromForm] List<IFormFile> images)
         {
